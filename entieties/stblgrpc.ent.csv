@@ -1,0 +1,35 @@
+CLS,GRP,DESC
+*,CIF,Customer
+D,CD,Term deposit
+D,DBD,Nostro account
+D,DDA,On demand account
+D,ESC,Escrow account
+D,SAV,Saving account
+D,SEC,Securities
+D,WASH,Wash account
+L,CBL,Loan with positive balance
+L,COM,Commecial loans
+L,DM,On demand loans
+L,LN,Consumer loans
+L,MTG,Mortgage
+L,RC,Revolving credits
+M,*,Independent group
+M,BANK,Bank
+M,BOND,Bond
+M,CHECK,Bank checks
+M,CI,Money
+M,CIF,Customer
+M,CK,Checks from other banks
+M,FEE,Service fee
+M,FEES,Service fee
+M,IBS,Profile internal
+M,IRA,IRE fee
+M,LOAN,Loans
+M,MISC,Miscellaneous
+M,PART,Sold
+M,RPA,Ri]etirement plan
+M,SBLI,SBLI
+M,TRANS,Transfers
+M,TRVCK,Travelers check
+M,VAULT,Vault
+M,WIRE,Electronic transfers

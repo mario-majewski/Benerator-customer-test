@@ -1,0 +1,5 @@
+PINSTAT,DES
+0,No password
+1,Password created
+2,Password verified
+3,Active password

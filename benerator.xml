@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<setup xmlns="https://www.benerator.de/schema/3.1.0-jdk-11"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.benerator.de/schema/3.1.0-jdk-11 benerator-3.1.0-jdk-11.xsd"
+        defaultEncoding="UTF-8"
+        defaultDataset="US"
+        defaultLocale="en_US"
+        defaultLineSeparator="\r\n">
+
+    <import domains="faker, address, person, us, organization" />
+    <import platforms="csv" />
+
+    <bean id="csv" class="CSVEntityExporter">
+        <property name="uri" value="cif-data.csv"/>
+    </bean>
+
+    <bean id="dtGen" class="DateTimeGenerator">
+        <property name='minDate' value='1948-01-01'/>
+        <property name='maxDate' value='2005-12-31'/>
+        <property name='dateGranularity' value='00-00-01'/>
+        <property name='dateDistribution' value='random'/>
+        <property name='minTime' value='00:00:00'/>
+        <property name='maxTime' value='00:00:00'/>
+        <property name='timeGranularity' value='00:00:01'/>
+        <property name='timeDistribution' value='random'/>
+    </bean>
+
+    <execute type="ftl">
+        function sexFun(pers,sex) {
+            if (pers == 1) {
+                return "";
+            }
+            return ;
+        }
+    </execute>
+
+    <generate type="transaction" count="100000" consumer="csv">
+        <!--    default generators    -->
+        <variable name="address" generator="AddressGenerator" />
+        <variable name="address2" generator="AddressGenerator" />
+        <variable name="person" generator="PersonGenerator" />
+
+        <!--    dictionary tables variables -->
+        <variable name="utblsic" type="entity" source="entieties/utblsic.ent.csv" distribution="random"/>
+        <variable name="utblacc" type="entity" source="entieties/utblacc.ent.csv" distribution="random"/>
+        <variable name="utbllocn" type="entity" source="entieties/utbllocn.ent.csv" distribution="random"/>
+        <variable name="utblcrcdx" type="entity" source="entieties/utblcrcdx.ent.csv" distribution="random"/>
+        <variable name="utblsdb" type="entity" source="entieties/utblsdb.ent.csv" distribution="random"/>
+        <variable name="stblcntry" type="entity" source="entieties/stblcntry.ent.csv" distribution="random"/>
+        <variable name="utblcustgrp" type="entity" source="entieties/utblcustgrp.ent.csv" distribution="random"/>
+        <variable name="utblmf" type="entity" source="entieties/utblmf.ent.csv" distribution="random"/>
+        <variable name="stblcntry1" type="entity" source="entieties/stblcntry1.ent.csv" distribution="random"/>
+        <variable name="utblwcalc" type="entity" source="entieties/utblwcalc.ent.csv" distribution="random"/>
+        <variable name="utblbrcd" type="entity" source="entieties/utblbrcd.ent.csv" distribution="random"/>
+        <variable name="utblw9st" type="entity" source="entieties/utblw9st.ent.csv" distribution="random"/>
+        <variable name="utblitsagr" type="entity" source="entieties/utblitsagr.ent.csv" distribution="random"/>
+        <variable name="stblcmspgen" type="entity" source="entieties/stblcmspgen.ent.csv" distribution="random"/>
+        <variable name="stblcmspstat" type="entity" source="entieties/stblcmspstat.ent.csv" distribution="random"/>
+        <variable name="utblid" type="entity" source="entieties/utblid.ent.csv" distribution="random"/>
+        <variable name="utblaudit" type="entity" source="entieties/utblaudit.ent.csv" distribution="random"/>
+        <variable name="utblms" type="entity" source="entieties/utblms.ent.csv" distribution="random"/>
+        <variable name="utblic" type="entity" source="entieties/utblic.ent.csv" distribution="random"/>
+        <variable name="utblintwr" type="entity" source="entieties/utblintwr.ent.csv" distribution="random"/>
+        <variable name="stblgrpc" type="entity" source="entieties/stblgrpc.ent.csv" distribution="random"/>
+        <variable name="utblitsstat" type="entity" source="entieties/utblitsstat.ent.csv" distribution="random"/>
+        <variable name="utblemployer" type="entity" source="entieties/utblemployer.ent.csv" distribution="random"/>
+        <variable name="utblrescd" type="entity" source="entieties/utblrescd.ent.csv" distribution="random"/>
+        <variable name="utblsex" type="entity" source="entieties/utblsex.ent.csv" distribution="random"/>
+        <variable name="utbleduc" type="entity" source="entieties/utbleduc.ent.csv" distribution="random"/>
+        <variable name="stblpers" type="entity" source="entieties/stblpers.ent.csv" distribution="random"/>
+        <variable name="utbloff" type="entity" source="entieties/utbloff.ent.csv" distribution="random"/>
+        <variable name="utblintype" type="entity" source="entieties/utblintype.ent.csv" distribution="random"/>
+        <variable name="utblcorre" type="entity" source="entieties/utblcorre.ent.csv" distribution="random"/>
+        <variable name="utblccntr" type="entity" source="entieties/utblccntr.ent.csv" distribution="random"/>
+        <variable name="utblown" type="entity" source="entieties/utblown.ent.csv" distribution="random"/>
+        <variable name="stblusrestat" type="entity" source="entieties/stblusrestat.ent.csv" distribution="random"/>
+        <variable name="utblco" type="entity" source="entieties/utblco.ent.csv" distribution="random"/>
+        <variable name="stblcifsol" type="entity" source="entieties/stblcifsol.ent.csv" distribution="random"/>
+        <variable name="utbllocale" type="entity" source="entieties/utbllocale.ent.csv" distribution="random"/>
+        <variable name="utblshhld" type="entity" source="entieties/utblshhld.ent.csv" distribution="random"/>
+        <variable name="utblsecgrp" type="entity" source="entieties/utblsecgrp.ent.csv" distribution="random"/>
+        <variable name="utblcc" type="entity" source="entieties/utblcc.ent.csv" distribution="random"/>
+
+        <!--    PRIMARY KEY    -->
+        <attribute name="acn" type="long" distribution="increment" min="100000000000" max="600000000000" unique="true" />
+
+        <attribute name="pers" script="stblpers.PERS" />   <!--  constant="0" NOT NULL -->
+        <attribute name="sex" script="utblsex.SEX"/>
+        <!--        <attribute name="sex2" script="{ftl:(${pers} == 1)? '' : ${sex}}"/>-->
+
+        <attribute name="nam" script="{ftl:${person.givenName} ${person.familyName}}" converter="new CutLength(40)"/>   <!--NOT NULL, LEN(40) !!!-->
+        <attribute name="xname" script="{ftl:${person.givenName}${person.familyName}}" converter="ToUpperCaseConverter, new CutLength(40)"/>
+        <attribute name="taxid" generator="SSNGenerator"/>
+        <attribute name="lnm" script="person.familyName"/>   <!--NOT NULL -->
+        <attribute name="fname" script="person.givenName"/>
+        <attribute name="mcity" script="address.city"/>
+        <attribute name="mstate" script="address.state.id"/>
+        <attribute name="mzip" script="address.postalCode"/>
+        <attribute name="mcntry" script="address.country.isoCode"/>   <!--NOT NULL -->
+        <attribute name="mad1" script="address.street"/>
+        <attribute name="mad2" script="address.houseNumber"/>
+        <attribute name="pcity" script="address2.city"/>
+        <attribute name="pstate" script="address2.state.id"/>
+        <attribute name="pzip" script="address2.postalCode"/>
+        <attribute name="pcntry" script="address2.country.isoCode"/>   <!--NOT NULL -->
+        <attribute name="pad1" script="address2.street"/>
+        <attribute name="pad2" script="address2.houseNumber"/>
+        <attribute name="dob" script="person.birthDate" converter="ToStringConverter, new CutLength(10)"/>
+        <attribute name="grp" constant="CIF"/>   <!--NOT NULL script="stblgrpc.GRP"  -->
+        <attribute name="dao" generator="dtGen" converter="ToStringConverter, new CutLength(10)"/>   <!--NOT NULL -->
+        <attribute name="hph" generator="new PhoneNumberGenerator('US')"/> <!-- generator="address2.mobilePhone"/> -->
+        <attribute name="bph" generator="new PhoneNumberGenerator('US')" /> <!-- generator="address2.officePhone"/> -->
+        <attribute name="email" script="person.email"/>
+        <attribute name="nation" script="address2.country.isoCode"/>
+        <attribute name="lang" script="address2.country.isoCode"/>
+        <attribute name="empcity" script="address.city"/>
+        <attribute name="empstate" script="address.state.id"/>
+        <attribute name="citzshp" script="address2.country.isoCode"/>
+
+        <attribute name="mar" script="utblms.MAR"/>
+        <attribute name="dep" type="short" min="0" max="4"/>
+        <attribute name="inc" script="utblic.INC"/>
+        <attribute name="own" script="utblown.OWN"/>
+        <attribute name="locale" script="utbllocale.LOCALE"/>
+        <attribute name="cifoff" script="utbloff.OFF"/>
+        <attribute name="shhld" script="utblshhld.SHHLD"/>
+        <attribute name="educ" script="utbleduc.EDUC"/>
+        <attribute name="emplno" script="utblemployer.EMPLNO"/>
+        <attribute name="emplno" script="utblemployer.EMPLNO"/>
+        <attribute name="agent" constant="0"/>
+        <attribute name="sic" script="utblsic.SIC"/>
+        <attribute name="as" type="int" min="15000" max="600000"/>
+        <attribute name="sicdsc" script="utblsic.SIC"/>
+        <attribute name="boo" script="utblbrcd.BRCD"/>   <!--NOT NULL -->
+        <attribute name="cc" script="utblccntr.CC"/>   <!--NOT NULL -->
+        <attribute name="ccode" script="utblcc.CCODE"/>   <!--NOT NULL -->
+        <attribute name="mf" script="utblmf.MF"/>
+        <attribute name="bwf" constant="1"/>
+        <attribute name="intwr" script="utblintwr.KEY"/>
+        <attribute name="w9stat" script="utblw9st.KEY"/>
+        <attribute name="intwcalc" script="utblwcalc.KEY"/>
+        <attribute name="sol" script="stblcifsol.SOL"/>
+        <attribute name="sdb" script="utblsdb.SDB"/>
+        <attribute name="sbli" type="int" min="100000" max="500000"/>
+        <attribute name="pid" generator="new FakerGenerator('internet','password')"/>
+        <attribute name="rescd" script="utblrescd.RESCD"/>
+        <attribute name="intype" script="utblintype.INTYPE"/>
+        <attribute name="pasnum" type="long" min="10000000" max="90000000"/>
+        <attribute name="aud1" script="utblaudit.KEY"/>
+        <attribute name="aud1cf" pattern="[1-9]{1}[DWMQY]{1}[AEN]{1}"/>   <!--  profile frequency  -->
+        <attribute name="efdtxbr" type="short" min="10" max="36"/>
+        <attribute name="afinst" values="0,1"/>
+        <attribute name="usrestat" script="stblusrestat.USRESTAT"/>
+        <attribute name="ellpls" values="0,1"/>
+        <attribute name="type" pattern="0[0-3]{1}"/>   <!--NOT NULL, 04-22 institution codes, 00-03 - personal codes -->
+        <attribute name="cls" pattern="[A-Z]{1}"/>   <!--NOT NULL -->
+        <attribute name="crcd" script="utblcrcdx.CRCD"/>   <!--NOT NULL -->
+        <attribute name="secgrp" script="utblsecgrp.SECGRP"/>
+        <attribute name="co" script="utblco.CO"/>
+        <attribute name="depclovr" pattern="[1-5]{1}"/>
+        <attribute name="tfshoext" script="utbllocn.LOCN"/>
+        <attribute name="income" type="int" min="15000" max="600000"/>
+        <attribute name="swiftadd" script="utblcorre.KEY"/>
+        <attribute name="custgrp" script="utblcustgrp.CUSTGRP"/>
+        <attribute name="locn" script="utbllocn.LOCN"/>
+        <attribute name="active" script="utblitsstat.STATUS"/>
+        <attribute name="agreement" script="utblitsagr.ITSAGR"/>
+        <attribute name="swiftcon" script="utblcorre.KEY"/>
+        <attribute name="pin1stat" script="stblcmspstat.PINSTAT"/>
+        <attribute name="pin1gen" script="stblcmspgen.PINGEN"/>
+        <attribute name="pci" script="address2.country.isoCode"/>
+        <attribute name="encpin1" generator="new FakerGenerator('internet','password')"/>
+        <!--
+        <attribute name="occ" script="utbloc.OCC"/>
+        <attribute name="pref" pattern=""/>
+        <attribute name="suffix" pattern=""/>
+        <attribute name="mname" pattern=""/>
+        <attribute name="mad3" pattern=""/>
+        <attribute name="mad4" pattern=""/>
+        <attribute name="mloc" pattern=""/>
+        <attribute name="pad3" pattern=""/>
+        <attribute name="pad4" pattern=""/>
+        <attribute name="ploc" pattern=""/>
+        <attribute name="dod" pattern=""/>
+        <attribute name="spouse" pattern=""/>
+        <attribute name="extcif" pattern=""/>
+        <attribute name="brreg" pattern=""/>
+        <attribute name="dodsabl" pattern=""/>
+        <attribute name="fye" pattern=""/>
+        <attribute name="ta" pattern=""/>
+        <attribute name="nw" pattern=""/>
+        <attribute name="cre" pattern=""/>
+        <attribute name="ne" pattern=""/>
+        <attribute name="con" pattern=""/>
+        <attribute name="pp1" pattern=""/>
+        <attribute name="bphext" pattern=""/>
+        <attribute name="telex" pattern=""/>
+        <attribute name="pin" pattern=""/>
+        <attribute name="aph" pattern=""/>
+        <attribute name="rflgc" pattern=""/>
+        <attribute name="taxexm" pattern=""/>
+        <attribute name="w8req" pattern=""/>
+        <attribute name="w8date" pattern=""/>
+        <attribute name="nr" pattern=""/>
+        <attribute name="lnsa" pattern=""/>
+        <attribute name="priv" pattern=""/>
+        <attribute name="lghd" pattern=""/>
+        <attribute name="expflg" pattern=""/>
+        <attribute name="lfu" pattern=""/>
+        <attribute name="fmld" pattern=""/>
+        <attribute name="atm" pattern=""/>
+        <attribute name="cen" pattern=""/>
+        <attribute name="convcif" pattern=""/>
+        <attribute name="empcd" pattern=""/>
+        <attribute name="legal" pattern=""/>
+        <attribute name="nopurge" pattern=""/>
+        <attribute name="aud2" script="utblaudit.KEY"/>
+        <attribute name="aud2cf" pattern=""/>
+        <attribute name="aud2nd" pattern=""/>
+        <attribute name="aud2ld" pattern=""/>
+        <attribute name="qaod" pattern=""/>
+        <attribute name="votexm" pattern=""/>
+        <attribute name="dlv" pattern=""/>
+        <attribute name="votmet" pattern=""/>
+        <attribute name="shcid" pattern=""/>
+        <attribute name="aud1nd" pattern=""/>
+        <attribute name="aud1ld" pattern=""/>
+        <attribute name="dlnum" pattern=""/>
+        <attribute name="dlstate" pattern=""/>
+        <attribute name="dlexpdt" pattern=""/>
+        <attribute name="mtamt" pattern=""/>
+        <attribute name="resd" pattern=""/>
+        <attribute name="dcl" pattern=""/>
+        <attribute name="lcl" pattern=""/>
+        <attribute name="edbi" pattern=""/>
+        <attribute name="ddbip" pattern=""/>
+        <attribute name="marem" pattern=""/>
+        <attribute name="mardm" pattern=""/>
+        <attribute name="martel" pattern=""/>
+        <attribute name="atn" pattern=""/>
+        <attribute name="apps" pattern=""/>
+        <attribute name="semfin" pattern=""/>
+        <attribute name="darcovr" pattern=""/>
+        <attribute name="vosfreq" pattern=""/>
+        <attribute name="cmsflg" pattern=""/>
+        <attribute name="plan" pattern=""/>
+        <attribute name="cusamt" pattern=""/>
+        <attribute name="govt" pattern=""/>
+        <attribute name="cusdate" pattern=""/>
+        <attribute name="pmaxbal" pattern=""/>
+        <attribute name="tfscifid" pattern=""/>
+        <attribute name="tfsbank" pattern=""/>
+        <attribute name="tfstrans" pattern=""/>
+        <attribute name="mts" pattern=""/>
+        <attribute name="treasnam" pattern=""/>
+        <attribute name="detnum" pattern=""/>
+        <attribute name="credline" pattern=""/>
+        <attribute name="faxnum" pattern=""/>
+        <attribute name="interbank" pattern=""/>
+        <attribute name="isdadt" pattern=""/>
+        <attribute name="statusdt" pattern=""/>
+        <attribute name="swiftsak" pattern=""/>
+        <attribute name="pin1uid" pattern=""/>
+        <attribute name="pin1cntr" pattern=""/>
+        <attribute name="pin1del" pattern=""/>
+        <attribute name="pin1tlo" pattern=""/>
+        <attribute name="pin2stat" script="stblcmspstat.PINSTAT"/>
+        <attribute name="pin2uid" pattern=""/>
+        <attribute name="pin2cntr" pattern=""/>
+        <attribute name="pin2gen" script="stblcmspgen.PINGEN"/>
+        <attribute name="pin2del" pattern=""/>
+        <attribute name="pin2tlo" pattern=""/>
+        <attribute name="encpin2" pattern=""/>
+        <attribute name="ped" pattern=""/>
+        <attribute name="oit" script="utblid.IDTYP"/>
+        <attribute name="oin" pattern=""/>
+        <attribute name="oed" pattern=""/>
+        <attribute name="issr" pattern=""/>
+        <attribute name="incpdt" pattern=""/>
+        <attribute name="crdnam" pattern=""/>
+        <attribute name="relmat" pattern=""/>
+        <attribute name="relcode" pattern=""/>
+        <attribute name="relcodovr" pattern=""/>
+        <attribute name="nrcntry" script="stblcntry.CNTRY"/>
+        <attribute name="mt900" pattern=""/>
+        <attribute name="mt900a" pattern=""/>
+        <attribute name="mt910" pattern=""/>
+        <attribute name="mt910a" pattern=""/>
+        <attribute name="mt320" pattern=""/>
+        <attribute name="mt320a" pattern=""/>
+        <attribute name="mt940" pattern=""/>
+        <attribute name="mt940a" pattern=""/>
+        <attribute name="mt942" pattern=""/>
+        <attribute name="mt942a" pattern=""/>
+        <attribute name="mt950" pattern=""/>
+        <attribute name="mt950a" pattern=""/>
+        <attribute name="sw940freq" pattern=""/>
+        <attribute name="mt942g1" pattern=""/>
+        <attribute name="mt942g2" pattern=""/>
+        <attribute name="mt942drth" pattern=""/>
+        <attribute name="mt942crth" pattern=""/>
+        <attribute name="mt900thr" pattern=""/>
+        <attribute name="mt910thr" pattern=""/>
+        -->
+    </generate>
+</setup>
